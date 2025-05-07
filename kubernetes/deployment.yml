@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-deployment
+  namespace: application
+  labels:
+    app: spring
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spring
+  template:
+    metadata:
+      labels:
+        app: spring
+    spec:
+      containers:
+        - name: spring-application-container
+          image: srinu641/ci-cd-demo:v1.0
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 9988
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ser-svc
+  namespace: application
+  labels:
+    app: nginx
+spec:
+  type: NodePort
+  selector:
+    app: spring
+  ports:
+    - port: 9988
+      targetPort: 9988
+---

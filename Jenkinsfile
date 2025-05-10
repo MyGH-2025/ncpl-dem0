@@ -22,7 +22,8 @@ pipeline{
         stage('SonarQube Analsyis') {
             steps {
                 withSonarQubeEnv('sonar-token') {
-                    sh "" $SCANNER_HOME/bin/sonar-scanner Dsonar.projectName=spring-application -Dsonar.projectKey=spring-application  -Dsonar.java.binaries=. ""
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner Dsonar.projectName=BoardGame -Dsonar.projectKey=BoardGame \
+                            -Dsonar.java.binaries=. '''
                 }
             }
         }
@@ -37,9 +38,6 @@ pipeline{
             steps {
                script {
                    withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-//                             sh "docker build -t ci-cd-demo ."
-//                             sh "docker tag ci-cd-demo srinu641/ci-cd-demo:V6.0"
-//                             sh "docker push srinu641/ci-cd-demo:V6.0"
 
                             sh '''
                             docker build -t ci-cd-demo .
@@ -47,6 +45,9 @@ pipeline{
                             docker push srinu641/ci-cd-demo:V6.0
                             docker images
                             '''
+//                             sh "docker build -t ci-cd-demo ."
+//                             sh "docker tag ci-cd-demo srinu641/ci-cd-demo:V6.0"
+//                             sh "docker push srinu641/ci-cd-demo:V6.0"
                     }
                }
             }

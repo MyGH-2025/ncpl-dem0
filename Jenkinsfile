@@ -29,11 +29,16 @@ pipeline{
             }
         }
 
-        stage('SonarQube Analsyis') {
+        stage('SonarQube-Analysis') {
             steps {
-                withSonarQubeEnv('sonar-scanner') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner Dsonar.projectName=BoardGame -Dsonar.projectKey=BoardGame \
-                            -Dsonar.java.binaries=. '''
+                script {
+                 echo "sonarqube code analysis"
+                 withSonarQubeEnv(credentialsId: 'sonar-token') {
+                     sh ''' $SCANNER_HOHE/bin/sonar-scanner -Dsonar.projectName=spring-application-with-mysql  -Dsonar.projectKey=spring-application-with-mysql \
+                     -Dsonar.java.binaries=. '''
+                     echo "End of sonarqube code analysis"
+
+                   }
                 }
             }
         }

@@ -1,6 +1,15 @@
 pipeline{
     agent any
 
+    tools {
+     jdk 'jdk17'
+     maven 'mvn3'
+    }
+
+    environment{
+        SCANNER_HOHE= tool 'sonar-scanner'
+    }
+
     stages{
         stage("Checkout from SCM"){
             steps {

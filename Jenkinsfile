@@ -34,7 +34,7 @@ pipeline{
                 script {
                  echo "sonarqube code analysis"
                  withSonarQubeEnv(credentialsId: 'sonar-token') {
-                     sh ''' $SCANNER_HOHE/bin/sonar-scanner -Dsonar.projectName=spring-application-with-mysql  -Dsonar.projectKey=spring-application-with-mysql \
+                     sh ''' $SCANNER_HOHE/bin/sonar-scanner -Dsonar.projectName=spring-application-with-mysql-one  -Dsonar.projectKey=spring-application-with-mysql-one \
                      -Dsonar.java.binaries=. '''
                      echo "End of sonarqube code analysis"
 

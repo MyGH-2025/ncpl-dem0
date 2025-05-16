@@ -4,16 +4,16 @@ metadata:
   name: spring-deployment
   namespace: application-namespace
   labels:
-    app: spring
+    app: fargate-ip-192-168-75-73.ec2.internal
 spec:
   replicas: 7
   selector:
     matchLabels:
-      app: spring
+      app: fargate-ip-192-168-75-73.ec2.internal
   template:
     metadata:
       labels:
-        app: spring
+        app: fargate-ip-192-168-75-73.ec2.internal
     spec:
       containers:
         - name: spring-application-container
@@ -38,7 +38,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: spring
+    app: fargate-ip-192-168-75-73.ec2.internal
   ports:
     - port: 9988
       targetPort: 9988

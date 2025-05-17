@@ -25,4 +25,9 @@ public class NcplDem0Application {
     public String demo(){
         return "Version:2.0";
     }
+
+    @GetMapping("/demo/home")
+    public String demo1(){
+        return "Version:3.0";
+    }
 }

@@ -97,7 +97,7 @@ pipeline {
 		}
 		stage('Trivy Scan'){
 			steps {
-				sh 'trivy --severity HIGH,CRITICAL --no-progress --format table -o trivy-report.html image ${JOB_NAME_NOW}:V3.0'
+				sh 'trivy --severity HIGH,CRITICAL --no-progress --format table -o trivy-report.html image ${JOB_NAME_NOW}:IMAGE_TAG'
 			}
 		}
 		stage('Login to ECR'){
